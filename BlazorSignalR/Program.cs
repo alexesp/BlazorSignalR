@@ -1,4 +1,5 @@
 using BlazorSignalR.Components;
+using BlazorSignalR.Hubs;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ app.UseHttpsRedirection();
 
 app.UseAntiforgery();
 
+app.MapBlazorHub();
+app.MapHub<ChatHub>("/chathub");
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
